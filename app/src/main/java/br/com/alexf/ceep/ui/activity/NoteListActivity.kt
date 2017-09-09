@@ -1,7 +1,8 @@
-package br.com.alexf.ceep
+package br.com.alexf.ceep.ui.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import br.com.alexf.ceep.R
 import kotlinx.android.synthetic.main.activity_note_list.*
 
 class NoteListActivity : AppCompatActivity() {
