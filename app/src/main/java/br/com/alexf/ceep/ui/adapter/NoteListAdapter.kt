@@ -29,7 +29,7 @@ class NoteListAdapter(private val notes: List<Note>,
         return notes.size
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindView(note: Note) {
             val title = itemView.note_item_title

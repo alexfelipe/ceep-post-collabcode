@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.view.View
 import br.com.alexf.ceep.R
 import br.com.alexf.ceep.model.Note
 import br.com.alexf.ceep.ui.adapter.NoteListAdapter
@@ -22,7 +23,7 @@ class NoteListActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
     }
 
-    fun notes(): List<Note> {
+    private fun notes(): List<Note> {
         return listOf(
                 Note("Leitura",
                         "Livro de Kotlin com Android"),
