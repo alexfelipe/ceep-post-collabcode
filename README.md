@@ -1,8 +1,8 @@
-The developed App is an example used in my serie of articles about Kotlin with Android.
+The developed App is an example used in my series of articles about Kotlin with Android.
 
 ## Article
 
-For more detail, [check the article](https://medium.com/collabcode/criando-sua-primeira-aplica%C3%A7%C3%A3o-android-com-kotlin-695bb476d40b) for understand step-by-step the implementation. 
+For more details on the implementation, [check out the article](https://medium.com/collabcode/criando-sua-primeira-aplica%C3%A7%C3%A3o-android-com-kotlin-695bb476d40b). 
 
 ## Questions or Suggestion
 
