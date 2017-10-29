@@ -2,7 +2,7 @@ The developed App is an example used in my series of articles about Kotlin with 
 
 ## Article
 
-For more details on the implementation, [check out the article](https://medium.com/collabcode/criando-sua-primeira-aplica%C3%A7%C3%A3o-android-com-kotlin-695bb476d40b). 
+For more details on the implementation, [check out the article](https://medium.com/collabcode/criando-lista-com-recyclerview-no-android-com-kotlin-85cb76f3775d). 
 
 ## Questions or Suggestion
 
