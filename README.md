@@ -2,7 +2,7 @@ The developed App is an example used in my series of articles about Kotlin with 
 
 ## Article
 
-For more details on the implementation, [check out the article](https://medium.com/collabcode/consumindo-api-rest-no-android-com-retrofit-em-kotlin-parte-2-62d40b49f8be). 
+For more details on the implementation, [check out the article](https://medium.com/collabcode/consumindo-api-rest-no-android-com-retrofit-em-kotlin-parte-3-c23adba08095). 
 
 ## Questions or Suggestion
 
