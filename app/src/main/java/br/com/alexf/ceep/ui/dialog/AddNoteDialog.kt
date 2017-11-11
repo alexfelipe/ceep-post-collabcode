@@ -26,7 +26,7 @@ class AddNoteDialog(private val viewGroup: ViewGroup,
                 .setPositiveButton("Save") { _, _ ->
                     val title = createdView.form_note_title.text.toString()
                     val description = createdView.form_note_description.text.toString()
-                    val note = Note(title, description)
+                    val note = Note(title = title, description = description)
                     NoteWebClient().insert(note, {
                         created(it)
                     }, {
