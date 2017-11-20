@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.note_item.view.*
 class NoteListAdapter(
         private val notes: MutableList<Note>,
         private val context: Context,
-        private var onItemClickListener: (note: Note, position: Int) -> Unit = { _, _ -> }) : Adapter<NoteListAdapter.ViewHolder>() {
+        private var onItemClickListener: (note: Note, position: Int) -> Unit) : Adapter<NoteListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val note = notes[position]
