@@ -34,4 +34,18 @@ class NoteWebClient {
         }))
     }
 
+    fun alter(note: Note, success: (note: Note) -> Unit,
+              failure: (throwable: Throwable) -> Unit) {
+        val call = RetrofitInitializer().noteService().alter(note, note.id)
+        call.enqueue(callback({ response ->
+            response?.body()?.let {
+                success(it)
+            }
+        }, { throwable ->
+            throwable?.let {
+                failure(it)
+            }
+        }))
+    }
+
 }

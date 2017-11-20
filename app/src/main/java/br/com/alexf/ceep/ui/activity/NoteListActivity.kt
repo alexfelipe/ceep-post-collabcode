@@ -9,7 +9,7 @@ import br.com.alexf.ceep.R
 import br.com.alexf.ceep.model.Note
 import br.com.alexf.ceep.retrofit.client.NoteWebClient
 import br.com.alexf.ceep.ui.adapter.NoteListAdapter
-import br.com.alexf.ceep.ui.dialog.AddNoteDialog
+import br.com.alexf.ceep.ui.dialog.NoteDialog
 import kotlinx.android.synthetic.main.activity_note_list.*
 
 class NoteListActivity : AppCompatActivity() {
@@ -28,8 +28,8 @@ class NoteListActivity : AppCompatActivity() {
         })
 
         fab_add_note.setOnClickListener {
-            AddNoteDialog(window.decorView as ViewGroup, this)
-                    .show {
+            NoteDialog(window.decorView as ViewGroup, this)
+                    .add {
                         notes.add(it)
                         configureList()
                     }
@@ -38,7 +38,12 @@ class NoteListActivity : AppCompatActivity() {
 
     private fun configureList() {
         val recyclerView = note_list_recyclerview
-        recyclerView.adapter = NoteListAdapter(notes, this)
+        recyclerView.adapter = NoteListAdapter(notes, this) { note, position ->
+            NoteDialog(window.decorView as ViewGroup, this).alter(note) {
+                notes[position] = it
+                configureList()
+            }
+        }
         val layoutManager = StaggeredGridLayoutManager(
                 2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager

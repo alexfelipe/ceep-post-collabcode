@@ -10,13 +10,18 @@ import br.com.alexf.ceep.R
 import br.com.alexf.ceep.model.Note
 import kotlinx.android.synthetic.main.note_item.view.*
 
-class NoteListAdapter(private val notes: List<Note>,
-                      private val context: Context) : Adapter<NoteListAdapter.ViewHolder>() {
+class NoteListAdapter(
+        private val notes: MutableList<Note>,
+        private val context: Context,
+        private var onItemClickListener: (note: Note, position: Int) -> Unit = { _, _ -> }) : Adapter<NoteListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val note = notes[position]
         holder?.let {
             it.bindView(note)
+            it.itemView.setOnClickListener {
+                onItemClickListener(note, position)
+            }
         }
     }
 
