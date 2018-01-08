@@ -38,7 +38,8 @@ class NoteDialog(
                 .show()
     }
 
-    fun add(created: (createdNote: Note) -> Unit) {
+    fun add(preExecute: () -> Unit, finished: () -> Unit,
+            created: (createdNote: Note) -> Unit) {
         AlertDialog.Builder(context)
                 .setTitle("Add note")
                 .setView(createdView)
@@ -46,7 +47,8 @@ class NoteDialog(
                     val title = titleField.text.toString()
                     val description = descriptionField.text.toString()
                     val note = Note(title = title, description = description)
-                    NoteWebClient().insert(note, {
+                    preExecute()
+                    NoteWebClient().insert(note, finished, {
                         created(it)
                     }, {
                         Toast.makeText(context, "Falha ao salvar nota", Toast.LENGTH_LONG).show()

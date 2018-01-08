@@ -1,9 +1,12 @@
 package br.com.alexf.ceep.ui.activity
 
+import android.app.ProgressDialog
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import br.com.alexf.ceep.R
 import br.com.alexf.ceep.model.Note
@@ -29,7 +32,11 @@ class NoteListActivity : AppCompatActivity() {
 
         fab_add_note.setOnClickListener {
             NoteDialog(window.decorView as ViewGroup, this)
-                    .add {
+                    .add({
+                        note_list_progress.visibility = ProgressBar.VISIBLE
+                    }, {
+                        note_list_progress.visibility = ProgressBar.GONE
+                    }) {
                         notes.add(it)
                         configureList()
                     }
