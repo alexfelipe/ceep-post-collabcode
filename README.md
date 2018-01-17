@@ -2,7 +2,7 @@ The developed App is an example used in my series of articles about Kotlin with 
 
 ## Article
 
-For more details on the implementation, [check out the article](https://medium.com/collabcode/consumindo-api-rest-no-android-com-retrofit-em-kotlin-parte-4-c60683ff0ee8). 
+For more details on the implementation, [check out the article](https://medium.com/collabcode/progressdialog-deprecated-e-agora-d295edcb37b3). 
 
 ## Questions or Suggestion
 
