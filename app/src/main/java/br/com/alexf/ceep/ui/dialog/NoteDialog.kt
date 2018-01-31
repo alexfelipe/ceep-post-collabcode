@@ -19,7 +19,10 @@ class NoteDialog(
     private val titleField = createdView.form_note_title
     private val descriptionField = createdView.form_note_description
 
-    fun alter(note: Note, altered: (alteredNote: Note) -> Unit) {
+    fun alter(note: Note,
+              preExecute: () -> Unit = {},
+              finished: () -> Unit = {},
+              altered: (alteredNote: Note) -> Unit) {
         titleField.setText(note.title)
         descriptionField.setText(note.description)
         AlertDialog.Builder(context)
@@ -29,17 +32,22 @@ class NoteDialog(
                     val title = titleField.text.toString()
                     val description = descriptionField.text.toString()
                     val alteredNote = note.copy(title = title, description = description)
-                    NoteWebClient().alter(alteredNote, {
-                        altered(it)
-                    }, {
-                        Toast.makeText(context, "Falha ao alterar nota", Toast.LENGTH_LONG).show()
-                    })
+                    NoteWebClient().alter(alteredNote,
+                            success = { altered(it) },
+                            failure = {
+                                Toast.makeText(context,
+                                        "Falha ao alterar nota",
+                                        Toast.LENGTH_LONG).show()
+                            },
+                            preExecute = preExecute,
+                            finished = finished)
                 }
                 .show()
     }
 
-    fun add(preExecute: () -> Unit, finished: () -> Unit,
-            created: (createdNote: Note) -> Unit) {
+    fun add(preExecute: () -> Unit = {},
+            finished: () -> Unit = {},
+            created: (createdNote: Note) -> Unit = {}) {
         AlertDialog.Builder(context)
                 .setTitle("Add note")
                 .setView(createdView)
@@ -48,11 +56,15 @@ class NoteDialog(
                     val description = descriptionField.text.toString()
                     val note = Note(title = title, description = description)
                     preExecute()
-                    NoteWebClient().insert(note, finished, {
-                        created(it)
-                    }, {
-                        Toast.makeText(context, "Falha ao salvar nota", Toast.LENGTH_LONG).show()
-                    })
+                    NoteWebClient().insert(note,
+                            success = { created(it) },
+                            failure = {
+                                Toast.makeText(context,
+                                        "Falha ao salvar nota",
+                                        Toast.LENGTH_LONG).show()
+                            },
+                            preExecute = preExecute,
+                            finished = finished)
                 }
                 .show()
     }

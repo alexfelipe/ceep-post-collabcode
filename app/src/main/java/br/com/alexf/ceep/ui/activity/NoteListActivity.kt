@@ -1,8 +1,6 @@
 package br.com.alexf.ceep.ui.activity
 
-import android.app.ProgressDialog
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.ViewGroup
@@ -23,23 +21,30 @@ class NoteListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_list)
 
-        NoteWebClient().list({
-            notes.addAll(it)
-            configureList()
-        }, {
-            Toast.makeText(this, "Falha ao buscar as notas", Toast.LENGTH_LONG).show()
-        })
+        NoteWebClient().list(
+                success = {
+                    notes.addAll(it)
+                    configureList()
+                },
+                failure = {
+                    Toast.makeText(this, "Falha ao buscar as notas", Toast.LENGTH_LONG).show()
+                })
 
         fab_add_note.setOnClickListener {
             NoteDialog(window.decorView as ViewGroup, this)
-                    .add({
-                        note_list_progress.visibility = ProgressBar.VISIBLE
-                    }, {
-                        note_list_progress.visibility = ProgressBar.GONE
-                    }) {
-                        notes.add(it)
-                        configureList()
-                    }
+                    .add(
+                            preExecute = {
+                                note_list_progress.visibility = ProgressBar.VISIBLE
+                            },
+                            created = {
+                                notes.add(it)
+                                configureList()
+                            },
+                            finished = {
+                                note_list_progress.visibility = ProgressBar.GONE
+                            })
+
+
         }
     }
 
